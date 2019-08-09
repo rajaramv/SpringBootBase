@@ -1,0 +1,72 @@
+xtmca:
+  topic-name-create: 
+  topic-name-modify: 
+  topic-name-delete: 
+  
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: 
+    producer:
+      bootstrap-servers: localhost:9092
+  application:
+    name: <queuename>
+  jmx:
+    enabled: true
+  profiles:
+    active: dev
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+        show_sql: false
+        format_sql: false
+      javax.persistence.schema-generation.database.action: none
+  datasource:
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@<host>:<port>/<servicename>
+    username: 
+    password: 
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      minimum-pool-size: 5
+      maximum-pool-size: 20
+      auto-commit: false
+      connection-timeout: 60000
+
+server:
+  port: 8090
+  tomcat:
+    max-threads: 100
+  servlet:
+    context-path: /
+      
+management:
+  server:
+    port: 8091
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: health,info,env,configprops,metrics,heapdump,threaddump,scheduledtasks
+  endpoint:      
+    health:
+      show-details: always
+    loggers:
+      show-details: always 
+
+logging:
+  level:
+    root: ERROR
+    org.springframework: ERROR
+    org.hibernate: ERROR
+    org.springframework.cloud.config: DEBUG
+    org.springframework.jdbc.datasource.DriverManagerDataSource : ERROR
+    com.xactly: INFO 
+    com.xactly.EnvironmentLogger: INFO
+ 

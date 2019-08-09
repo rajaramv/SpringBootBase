@@ -1,0 +1,47 @@
+<settings>
+  <mirrors>
+  <mirror>
+   <id>google-maven-central</id>
+   <name>Google Maven Central</name>
+   <url>https://maven-central.storage.googleapis.com/repos/central/data/</url>
+   <mirrorOf>central</mirrorOf>
+  </mirror> 
+</mirrors> 
+  <pluginGroups>
+    <pluginGroup>com.atlassian.maven.plugins</pluginGroup>
+  </pluginGroups>
+  <profiles>
+    <profile>
+      <id>nexus</id>
+      <!--Enable snapshots for the built in central repo to direct -->
+      <!--all requests to nexus via the mirror -->
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases><enabled>true</enabled><updatePolicy>always</updatePolicy></releases>
+          <snapshots><enabled>true</enabled><updatePolicy>always</updatePolicy></snapshots>
+        </repository>
+      </repositories>
+     <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases><enabled>true</enabled><updatePolicy>always</updatePolicy></releases>
+          <snapshots><enabled>true</enabled><updatePolicy>always</updatePolicy></snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <!--make the profile active all the time -->
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+  <servers>
+    <server>
+      <id>deployment</id>
+      <username>deployment</username>
+      <password>Deploy2Xactly</password>
+    </server>
+  </servers>
+</settings>
